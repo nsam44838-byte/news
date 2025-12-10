@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.nav-link:hover {
+    color: #0d6efd !important;
+    font-weight: 600;
+    transition: 0.2s;
+}
+

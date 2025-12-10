@@ -1,0 +1,143 @@
+/* ===== GENERAL LAYOUT ===== */
+body {
+    background: linear-gradient(135deg, #141e30, #243b55);
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    margin: 0;
+}
+
+.d-flex {
+    display: flex;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 250px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    height: 100vh;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar h4 {
+    text-align: center;
+    font-weight: 600;
+    color: #00e0ff;
+    text-shadow: 0 0 5px #00e0ff;
+}
+
+/* ===== SIDEBAR NAV LINKS ===== */
+.sidebar .nav-link {
+    color: #cbd5e1;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar .nav-link:hover {
+    background: rgba(0, 224, 255, 0.15);
+    color: #00e0ff;
+    transform: translateX(5px);
+}
+
+.sidebar .nav-link.active {
+    background: linear-gradient(90deg, #00e0ff, #0078ff);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.6);
+}
+
+/* ===== FOOTER (LOGOUT SECTION) ===== */
+.sidebar .mt-auto {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .text-light {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #00e0ff !important;
+}
+
+.sidebar button {
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.sidebar button:hover {
+    background: #ff4c4c;
+}
+
+/* ===== MAIN CONTENT ===== */
+.content {
+    flex: 1;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    min-height: 100vh;
+    overflow-y: auto;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
+    color: #fff;
+}
+
+.content h1, .content h2, .content h3 {
+    color: #00e0ff;
+}
+
+.content a {
+    color: #00e0ff;
+    text-decoration: none;
+}
+.content a:hover {
+    text-decoration: underline;
+}
+
+
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.sidebar {
+    width: 260px;
+    background: #0d1b2a;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 260px;
+    min-height: 100vh;
+    overflow-y: auto;
+    background: #1e293b;
+}
+
+.category-form {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.category-form input {
+    flex: 1;
+}
+    
