@@ -63,7 +63,7 @@
 
     <!-- 3. The main content container using Bootstrap grid system -->
     <div class="container py-5">
-        <h1 class="mb-4 text-center">LATEST NEWS</h1>
+        <h1 class="mb-4 text-center text-blue-500 font-bold">LATEST NEWS</h1>
         <!-- The Bootstrap .row class manages the layout and responsiveness -->
         <div class="row">
 

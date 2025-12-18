@@ -37,7 +37,7 @@
 
             {{-- Date --}}
             <p class="text-muted mb-3">
-                📅 Posted on {{ $post->created_at->format('M d, Y') }}
+                📅 Posted on {{ $post->created_at->format('M d, Y') ?? 'No date' }}
             </p>
 
             {{-- Content --}}
@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <a href="{{ url('/posts') }}" class="btn btn-dark mt-4">
+    <a href="{{ url('/') }}" class="btn btn-dark mt-4">
         ← Back to News
     </a>
 

@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Slide;
+use Illuminate\Support\Facades\Storage; // ✅ Add this line
 
 class SlideController extends Controller
 {
-    
+
     public function index()
     {
         $slides = Slide::all();
@@ -45,34 +46,45 @@ class SlideController extends Controller
         return view('admin.slide.edit', compact('slide'));
     }
 
-    public function update(Request $request, $id)
+  public function update(Request $request, $id)
     {
         $slide = Slide::findOrFail($id);
 
         $request->validate([
-            'title' => 'required',
-            'image' => 'nullable|image',
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        $slide->title = $request->title;
+        $slide->description = $request->description;
+
         if ($request->hasFile('image')) {
-            $slide->image = $request->file('image')->store('slides', 'public');
+            if ($slide->image && Storage::exists($slide->image)) {
+                Storage::delete($slide->image);
+            }
+            $path = $request->file('image')->store('slides', 'public');
+            $slide->image = $path;
         }
 
-        $slide->title = $request->title;
-        $slide->description = $request->description ?? '';
-        $slide->is_active = $request->is_active ?? 1;
         $slide->save();
 
-        return redirect()->route('admin.slide.index')->with('success', 'Slide updated!');
+        return redirect()->route('admin.slide.index')->with('success', 'Slide updated successfully.');
     }
 
-    // Delete Slide (Soft Delete)
-public function destroy($id)
-{
-    $slide = Slide::findOrFail($id);
-    $slide->delete(); // soft delete
-    return redirect()->route('admin.slide.index')->with('success', 'Slide deleted successfully.');
-}
+        public function destroy($id)
+        {
+            $slide = Slide::findOrFail($id);
+
+            // Delete image from storage
+            if ($slide->image && Storage::exists($slide->image)) {
+                Storage::delete($slide->image);
+            }
+
+            $slide->delete();
+
+            return redirect()->route('admin.slide.index')->with('success', 'Slide deleted successfully.');
+        }
 
 // Optional: show trashed slides
 public function trashed()

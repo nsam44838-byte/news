@@ -81,7 +81,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="{{ url('/about') }}">
                         About
                     </a>
@@ -91,7 +91,7 @@
                     <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}" href="{{ url('/contact') }}">
                         Contact
                     </a>
-                </li>
+                </li> --}}
 
             </ul>
         </div>

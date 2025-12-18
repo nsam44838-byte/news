@@ -61,7 +61,7 @@
 
     <!-- 3. The main content container using Bootstrap grid system -->
     <div class="container py-5">
-        <h1 class="mb-4 text-center">LATEST NEWS</h1>
+       <h1 class="mb-4 text-center text-blue-500 font-bold">LATEST NEWS</h1>
         <!-- The Bootstrap .row class manages the layout and responsiveness -->
         <div class="row">
 
@@ -81,7 +81,7 @@
                   <!-- Truncation handled by PHP logic -->
                   <p class="card-text">{{ Str::limit($post->content, 80) }}</p>
                   <a href="{{ url('post/' . $post->id) }}" class="btn btn-primary btn-sm">Read More</a>
-                  
+
                 </div>
               </div>
             </div>

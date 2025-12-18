@@ -23,15 +23,15 @@
         <div class="sidebar d-flex flex-column p-3">
             <h4 class="fw-bold mb-4">Admin Panel</h4>
             <ul class="nav nav-pills flex-column mb-auto">
-                
+
                 <li><a href="{{ route('admin.dashboard.index') }}" class="nav-link {{ request()->routeIs('admin.dashboard.index') ? 'active' : '' }}">🏠 Dashboard</a></li>
                 <li><a href="{{ route('admin.slide.index') }}" class="nav-link {{ request()->routeIs('admin.slide.index') ? 'active' : '' }}">🖼 Slides</a></li>
                 <li><a href="{{ route('admin.category.index') }}" class="nav-link {{ request()->routeIs('admin.category.index') ? 'active' : '' }}">📁 Categories</a></li>
                 <li><a href="{{ route('admin.post.index') }}" class="nav-link {{ request()->routeIs('admin.post.index') ? 'active' : '' }}">📰 Post</a></li>
                 <!-- <li><a href="{{ route('admin.news.index') }}" class="nav-link {{ request()->routeIs('admin.news.index') ? 'active' : '' }}">📰 News</a></li> -->
-                <li><a href="{{ route('admin.about.index') }}" class="nav-link {{ request()->routeIs('admin.about.index') ? 'active' : '' }}">ℹ️ About</a></li>
+                {{-- <li><a href="{{ route('admin.about.index') }}" class="nav-link {{ request()->routeIs('admin.about.index') ? 'active' : '' }}">ℹ️ About</a></li>
                 <li><a href="{{ route('admin.contact.index') }}" class="nav-link {{ request()->routeIs('admin.contact.index') ? 'active' : '' }}">📞 Contact</a></li>
-                
+                 --}}
             </ul>
 
 
@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
