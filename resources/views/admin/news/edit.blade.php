@@ -22,8 +22,8 @@
             <input type="text" name="title" class="form-control" value="{{ old('title', $news->title) }}" required>
         </div>
         <div class="mb-3">
-            <label class="form-label">Description</label>
-            <textarea name="description" class="form-control" rows="4">{{ old('description', $news->description) }}</textarea>
+            <label class="form-label">Content</label>
+            <textarea name="content" class="form-control" rows="4">{{ old('content', $news->content) }}</textarea>
         </div>
         <div class="mb-3">
             <label class="form-label">Current Image</label><br>

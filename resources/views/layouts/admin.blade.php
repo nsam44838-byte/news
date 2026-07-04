@@ -1,51 +1,77 @@
-    <!DOCTYPE html>
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>@yield('title', 'Admin Panel') - {{ config('app.name', 'Laravel') }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    @stack('styles')
+</head>
+<body>
 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-    </head>
-    <body>
-    <div class="d-flex">
+<button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Toggle sidebar">
+    <i class="bi bi-list"></i>
+</button>
 
-            <div class="content">
-                @yield('content')
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="content-wrapper">
+    @include('admin.layouts.sidebar')
+
+    <div class="main-content">
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show d-flex align-items-center justify-content-between">
+                <span><i class="bi bi-check-circle me-2"></i>{{ session('success') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1);"></button>
             </div>
+        @endif
 
-
-
-        <!-- SIDEBAR -->
-        <div class="sidebar d-flex flex-column p-3">
-            <h4 class="fw-bold mb-4">Admin Panel</h4>
-            <ul class="nav nav-pills flex-column mb-auto">
-
-                <li><a href="{{ route('admin.dashboard.index') }}" class="nav-link {{ request()->routeIs('admin.dashboard.index') ? 'active' : '' }}">🏠 Dashboard</a></li>
-                <li><a href="{{ route('admin.slide.index') }}" class="nav-link {{ request()->routeIs('admin.slide.index') ? 'active' : '' }}">🖼 Slides</a></li>
-                <li><a href="{{ route('admin.category.index') }}" class="nav-link {{ request()->routeIs('admin.category.index') ? 'active' : '' }}">📁 Categories</a></li>
-                <li><a href="{{ route('admin.post.index') }}" class="nav-link {{ request()->routeIs('admin.post.index') ? 'active' : '' }}">📰 Post</a></li>
-                <!-- <li><a href="{{ route('admin.news.index') }}" class="nav-link {{ request()->routeIs('admin.news.index') ? 'active' : '' }}">📰 News</a></li> -->
-                {{-- <li><a href="{{ route('admin.about.index') }}" class="nav-link {{ request()->routeIs('admin.about.index') ? 'active' : '' }}">ℹ️ About</a></li>
-                <li><a href="{{ route('admin.contact.index') }}" class="nav-link {{ request()->routeIs('admin.contact.index') ? 'active' : '' }}">📞 Contact</a></li>
-                 --}}
-            </ul>
-
-
-            <div class="mt-auto pt-3">
-                <div class="text-light mb-2">{{ Auth::user()->name ?? 'Admin' }}</div>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button class="btn btn-danger w-100">Log Out</button>
-                </form>
+        @if($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show">
+                <ul class="mb-0">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1);"></button>
             </div>
-        </div>
+        @endif
 
-
+        @yield('content')
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
-    </html>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.getElementById('sidebarToggle');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    function openSidebar() {
+        sidebar.classList.add('show');
+        overlay.classList.add('active');
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('show');
+        overlay.classList.remove('active');
+    }
+
+    if (toggle) {
+        toggle.addEventListener('click', openSidebar);
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', closeSidebar);
+    }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+@stack('scripts')
+</body>
+</html>

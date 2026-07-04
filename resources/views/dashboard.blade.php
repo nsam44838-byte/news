@@ -1,22 +1,11 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-
-
-                    <h1> Welcome to my page</h1>
-
-                    
-                </div>
-            </div>
+    <div class="container py-5">
+        <div class="text-center">
+            <h2 class="fw-bold mb-3">Welcome, {{ Auth::user()->name }}!</h2>
+            <p class="text-secondary mb-4" style="color:#94a3b8 !important;">You're logged in successfully.</p>
+            <a href="{{ route('admin.dashboard.index') }}" class="btn btn-primary">
+                <i class="bi bi-speedometer2 me-2"></i>Go to Dashboard
+            </a>
         </div>
     </div>
 </x-app-layout>

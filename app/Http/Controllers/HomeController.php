@@ -12,6 +12,6 @@ class HomeController extends Controller
     {
         $slides = Slide::latest()->get();
         $posts  = Post::latest()->get();
-        return view('slide', compact('slides', 'posts'));
+        return view('front.pages.home', compact('slides', 'posts'));
     }
 }

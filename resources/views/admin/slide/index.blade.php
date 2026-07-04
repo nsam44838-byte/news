@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Slides')
+
 @section('content')
 <div class="container py-4">
 
@@ -7,11 +9,6 @@
         <h1 class="fw-bold">Slides</h1>
         <a href="{{ route('admin.slide.create') }}" class="btn btn-primary">+ Add Slide</a>
     </div>
-
-    <!-- Success Message -->
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
 
     <!-- Slides Table -->
     <table class="table table-dark table-bordered text-center">

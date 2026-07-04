@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Posts')
+
 @section('content')
 <div class="container py-4">
 
@@ -7,11 +9,6 @@
         <h1 class="fw-bold">Posts</h1>
         <a href="{{ route('admin.post.create') }}" class="btn btn-primary">+ Add Post</a>
     </div>
-
-    <!-- Success Message -->
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
 
     <!-- Posts Table -->
     <table class="table table-dark table-bordered text-center">
