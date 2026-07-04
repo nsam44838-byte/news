@@ -1,0 +1,29 @@
+{
+    "functions": {
+        "api/index.php": {
+            "runtime": "vercel-php@0.7.1",
+            "maxDuration": 30
+        }
+    },
+    "buildCommand": "npm run build",
+    "routes": [
+        {
+            "src": "/(css|js|images|fonts|storage|favicon.ico|robots.txt)/(.*)",
+            "dest": "/public/$1/$2",
+            "headers": {
+                "Cache-Control": "public, max-age=31536000, immutable"
+            }
+        },
+        {
+            "src": "/(build)/(.*)",
+            "dest": "/public/$1/$2",
+            "headers": {
+                "Cache-Control": "public, max-age=31536000, immutable"
+            }
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
+        }
+    ]
+}
